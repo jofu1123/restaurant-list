@@ -25,6 +25,10 @@
    出現Express is listening on localhost:3000即成功，並移置 http://localhost:3000 顯示結果
    
 # 預覽畫面
+### 首頁
+![index](https://github.com/jofu1123/restaurant-list/blob/master/photo/1566734053510.jpg)
+### 詳細內容頁面
+![detail](https://github.com/jofu1123/restaurant-list/blob/master/photo/1566742946875.jpg)
 
 # 使用工具
  + [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) -開發code環境
