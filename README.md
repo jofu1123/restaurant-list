@@ -27,3 +27,6 @@
 # 預覽畫面
 
 # 使用工具
+ + [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) -開發code環境
+ + [Express](https://www.npmjs.com/package/express) -應用程式架構
+ + [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) -使用模板引擎
