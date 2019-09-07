@@ -54,11 +54,12 @@ app.get('/restaurants', (req, res) => {
 })
 
 // routes setting show detail page
-app.get('/restaurants/:restaurant_id/detail', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant })
+app.get('/restaurants/:id/detail', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('show', { restaurant })
+  })
 })
-
 // routes Create
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
