@@ -45,11 +45,38 @@ app.get('/', (req, res) => {
   res.render('index', { restaurants: restaurantList.results })
 })
 
+app.get('/restaurants', (req, res) => {
+  res.redirect('/')
+})
+
 // routes setting show detail page
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
 
   res.render('show', { restaurant })
+})
+
+// routes Create
+app.get('/restaurants/new', (req, res) => {
+  res.send('create page')
+})
+
+app.post('/restaurants', (req, res) => {
+  res.send('pose data')
+})
+
+// routes Update
+app.get('/restaurants/:id/edit', (req, res) => {
+  res.send('edit page')
+})
+
+app.post('/restaurants/:id', (req, res) => {
+  res.send('edit data')
+})
+
+// routes Delete
+app.post('/restaurant/:id/delete', (req, res) => {
+  res.send('delete data')
 })
 
 // routes setting search function 
