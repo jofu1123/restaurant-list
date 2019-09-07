@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
+const Restaurant = require('./models/list')
 const app = express()
 
 // port
