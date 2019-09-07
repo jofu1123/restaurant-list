@@ -18,7 +18,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // connect mongodb
-mongoose.connect("mongodb://127.0.0.1/restauralt", { useNewUrlParser: true })
+mongoose.connect("mongodb://127.0.0.1/restaurant", { useNewUrlParser: true })
 const db = mongoose.connection
 
 // setting express-handlebars
@@ -42,7 +42,11 @@ db.once('open', () => {
 ****************************/
 // routes setting index
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find((err, list) => {
+    if (err) return console.error(err)
+    return res.render('index', { restaurants: list })
+  })
+  // res.render('index', { restaurants: list })
 })
 
 app.get('/restaurants', (req, res) => {
@@ -50,19 +54,32 @@ app.get('/restaurants', (req, res) => {
 })
 
 // routes setting show detail page
-app.get('/restaurants/:restaurant_id', (req, res) => {
+app.get('/restaurants/:restaurant_id/detail', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-
   res.render('show', { restaurant })
 })
 
 // routes Create
 app.get('/restaurants/new', (req, res) => {
-  res.send('create page')
+  res.render('new')
 })
 
 app.post('/restaurants', (req, res) => {
-  res.send('pose data')
+  const restaurant = new Restaurant({
+    name: req.body.name,
+    name_en: req.body.name_en,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description
+  })
+  restaurant.save(err => {
+    if (err) return console.error(err)
+    return res.redirect('/')
+  })
 })
 
 // routes Update
