@@ -1,4 +1,4 @@
-<h1 class="mb-1 restaurant-show-title">新增餐廳</h1>
+<h1 class="mb-1 restaurant-show-title">編輯餐廳</h1>
 
 <div class="container">
   <form action="/restaurants/{{{restaurant.id}}}/edit" method="post" class="mb-5">
@@ -40,8 +40,9 @@
         value="{{{restaurant.rating}}}"><br>
     </div>
     <div class="input-group mb-3">
-      <label class="mr-3">Description :</label><input type="textarea" name="description" placeholder="Description"
-        required="required" value="{{{restaurant.description}}}" required="required"><br>
+      <label class="mr-3">Description :</label>
+      <textarea class="form-control" row="5" name="description" placeholder="Description"
+        required="required">{{{restaurant.description}}}</textarea><br>
     </div>
     <button type="submit" class="btn btn-light">Done</button>
     <a href="/" class="btn btn-danger ml-2">Cancel</a>
