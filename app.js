@@ -46,7 +46,6 @@ app.get('/', (req, res) => {
     if (err) return console.error(err)
     return res.render('index', { restaurants: list })
   })
-  // res.render('index', { restaurants: list })
 })
 
 app.get('/restaurants', (req, res) => {
@@ -60,6 +59,7 @@ app.get('/restaurants/:id/detail', (req, res) => {
     return res.render('show', { restaurant })
   })
 })
+
 // routes Create
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
@@ -85,16 +85,34 @@ app.post('/restaurants', (req, res) => {
 
 // routes Update
 app.get('/restaurants/:id/edit', (req, res) => {
-  res.send('edit page')
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('edit', { restaurant })
+  })
 })
 
-app.post('/restaurants/:id', (req, res) => {
-  res.send('edit data')
+app.post('/restaurants/:id/edit', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    restaurant.name = req.body.name
+    restaurant.name_en = req.body.name_en
+    restaurant.category = req.body.category
+    restaurant.image = req.body.image
+    restaurant.location = req.body.location
+    restaurant.phone = req.body.phone
+    restaurant.rating = req.body.rating
+    restaurant.description = req.body.description
+    restaurant.save((err) => {
+      if (err) return console.error(err)
+      return res.redirect(`/restaurants/${req.params.id}/detail`)
+    })
+  })
 })
 
 // routes Delete
 app.post('/restaurant/:id/delete', (req, res) => {
-  res.send('delete data')
+
+  // restaurant = req.body
 })
 
 // routes setting search function 
@@ -103,7 +121,6 @@ app.get('/search', (req, res) => {
   const restaurants = restaurantList.results.filter(({ name, category }) => {
     return name.toLowerCase().includes(keyword) || category.toLowerCase().includes(keyword)
   })
-
   res.render('index', { restaurants, keyword })
 })
 
