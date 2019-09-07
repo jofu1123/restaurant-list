@@ -49,9 +49,11 @@
             </div>
             {{!-- card footer --}}
             <div class="card-footer text-right">
-              <a href="/restaurants/{{{this.id}}}/edit" class="btn btn-light p-1">Edit</a>
-              <a href="/restaurants/{{{this.id}}}/detail" class="btn btn-light p-1">Detail</a>
-              <button type="button" class="btn btn-danger p-1">Delete</button>
+              <form action="/restaurants/{{{this.id}}}/delete" method="POST">
+                <a href="/restaurants/{{{this.id}}}/edit" class="btn btn-secondary p-1">Edit</a>
+                <a href="/restaurants/{{{this.id}}}/detail" class="btn btn-secondary p-1">Detail</a>
+                <button type="submit" class="btn btn-danger p-1">Delete</button>
+              </form>
             </div>
 
           </div>

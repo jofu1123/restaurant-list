@@ -110,8 +110,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // routes Delete
-app.post('/restaurant/:id/delete', (req, res) => {
-
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    restaurant.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  })
   // restaurant = req.body
 })
 
