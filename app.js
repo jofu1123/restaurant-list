@@ -122,11 +122,14 @@ app.post('/restaurants/:id/delete', (req, res) => {
 
 // routes setting search function 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase()
-  const restaurants = restaurantList.results.filter(({ name, category }) => {
-    return name.toLowerCase().includes(keyword) || category.toLowerCase().includes(keyword)
+  Restaurant.find((err, allRestaurantList) => {
+    const keyword = req.query.keyword.toLowerCase()
+    const restaurants = allRestaurantList.filter(({ name, category }) => {
+      return name.toLowerCase().includes(keyword) || category.toLowerCase().includes(keyword)
+    })
+    res.render('index', { restaurants, keyword })
   })
-  res.render('index', { restaurants, keyword })
+
 })
 
 

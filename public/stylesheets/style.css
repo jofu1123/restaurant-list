@@ -99,3 +99,11 @@ header {
   }
   
 }
+
+.input-group input{
+  min-width: 50%;
+}
+
+.input-group label{
+  min-width: 200px;
+}
