@@ -1,25 +1,39 @@
 /****************************
       setting and require
 ****************************/
-// require express
+// require
 const express = require('express')
+const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const restaurantList = require('./restaurant.json')
 const app = express()
 
 // port
 const port = 3000
 
-// require express-handlebars
-const exphbs = require('express-handlebars')
-
 // setting static file
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// connect mongodb
+mongoose.connect("mongodb://127.0.0.1/restauralt", { useNewUrlParser: true })
+const db = mongoose.connection
 
 // setting express-handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-// require path of restaurant.json
-const restaurantList = require('./restaurant.json')
+//// connect db
+// connect error
+db.on('error', () => {
+  console.log('mongodb error')
+})
+
+// connected
+db.once('open', () => {
+  console.log('mongodb connected')
+})
 
 
 /****************************
