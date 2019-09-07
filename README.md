@@ -43,9 +43,11 @@
    
 # 預覽畫面
 ### 首頁
-![index](https://github.com/jofu1123/restaurant-list/blob/master/photo/1566734053510.jpg)
+![index](https://github.com/jofu1123/restaurant-list/blob/master/photo/index.jpg)
 ### 詳細內容頁面
-![detail](https://github.com/jofu1123/restaurant-list/blob/master/photo/1566742946875.jpg)
+![detail](https://github.com/jofu1123/restaurant-list/blob/master/photo/detail.jpg)
+### 編輯餐廳頁面
+![edit](https://github.com/jofu1123/restaurant-list/blob/master/photo/edit.jpg)
 
 # 使用工具
  + [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) -開發code環境
