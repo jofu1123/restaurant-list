@@ -3,7 +3,10 @@
 
 # 功能
 + 首頁搜尋bar可以輸入關鍵字搜尋餐館名稱or餐廳類別
++ 首頁新增Create按鈕，可新增一筆餐廳名單
 + 詳細內容頁點選地圖，跳出新頁面連結至google map
++ 可在首頁、詳細內容頁中點選Edit進行資料修改
++ 可在首頁、詳細內容頁中點選Delete刪除資料
 
 ## 相關安裝
 1. 開啟terminal(終端機)，作業目錄下執行：
@@ -18,11 +21,21 @@
    ```
    npm install
    ```
-4. 輸入指令啟動本機伺服器
+4. 開啟本地MongoDB資料庫
+5. 執行listSeeder.js，匯入餐廳預設資料
+   ```
+   ~/restaurant-list/models/seeds node listSeeder.js
+   ```
+6. 輸入指令啟動本機伺服器
    ```
    nodemon app.js
    ```
-   出現Express is listening on localhost:3000即成功，並移置 http://localhost:3000 顯示結果
+   出現
+   ```
+   Express is listening on localhost:3000
+   mongodb connected
+   ```
+   即成功，並移置 http://localhost:3000 顯示結果
    
 # 預覽畫面
 ### 首頁
@@ -34,3 +47,5 @@
  + [Visual Studio Code](https://visualstudio.microsoft.com/zh-hant/) -開發code環境
  + [Express](https://www.npmjs.com/package/express) -應用程式架構
  + [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) -使用模板引擎
+ + [body-parser](https://www.npmjs.com/package/body-parser) -處理URLencoded格式的請求
+ + [Mongoose](https://www.npmjs.com/package/mongoose) -MongoDB ODM
