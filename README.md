@@ -4,6 +4,9 @@
 # 更新
 + 1.簡易版面餐廳清單
 + 2.增加CRUD功能，並使用MongoDB連接資料庫 (2019/9/7)
++ 3.重構route，符合MCV規則，並把修改刪除重新寫出符合RESful (2019/9/8)
++ 4.增加排序，可點選排序名稱、排序規則進行排序 (2019/9/8)
++ 5.新增功能，刪除需再次確認
 
 # 功能
 + 首頁搜尋bar可以輸入關鍵字搜尋餐館名稱or餐廳類別
@@ -11,6 +14,7 @@
 + 詳細內容頁點選地圖，跳出新頁面連結至google map
 + 可在首頁、詳細內容頁中點選Edit進行資料修改
 + 可在首頁、詳細內容頁中點選Delete刪除資料
++ 可在首頁進行餐廳類別排序
 
 ## 相關安裝
 1. 開啟terminal(終端機)，作業目錄下執行：
@@ -43,7 +47,7 @@
    
 # 預覽畫面
 ### 首頁
-![index](https://github.com/jofu1123/restaurant-list/blob/master/photo/index.jpg)
+![index](https://github.com/jofu1123/restaurant-list/blob/master/photo/index1.jpg)
 ### 詳細內容頁面
 ![detail](https://github.com/jofu1123/restaurant-list/blob/master/photo/detail.jpg)
 ### 編輯餐廳頁面
@@ -55,3 +59,4 @@
  + [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) -使用模板引擎
  + [body-parser](https://www.npmjs.com/package/body-parser) -處理URLencoded格式的請求
  + [Mongoose](https://www.npmjs.com/package/mongoose) -MongoDB ODM
+ + [method-override](https://www.npmjs.com/package/method-override) -處理PUT、DELETE動詞功能
