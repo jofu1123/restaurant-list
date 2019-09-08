@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/list')
+const methodOverride = require('method-override')
 const app = express()
 
 // port
@@ -16,6 +17,9 @@ const port = 3000
 // setting static file
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// setting use method-override
+app.use(methodOverride('_method'))
 
 // connect mongodb
 mongoose.connect("mongodb://127.0.0.1/restaurant", { useNewUrlParser: true })
@@ -91,7 +95,8 @@ app.get('/restaurants/:id/edit', (req, res) => {
   })
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+// route Update data
+app.put('/restaurants/:id/edit', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.name = req.body.name
@@ -110,7 +115,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // routes Delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     restaurant.remove(err => {
       if (err) return console.error(err)

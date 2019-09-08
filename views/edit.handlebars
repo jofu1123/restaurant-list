@@ -1,7 +1,7 @@
 <h1 class="mb-1 restaurant-show-title">編輯餐廳</h1>
 
 <div class="container">
-  <form action="/restaurants/{{{restaurant.id}}}/edit" method="post" class="mb-5">
+  <form action="/restaurants/{{{restaurant.id}}}/edit?_method=PUT" method="post" class="mb-5">
     <div class="input-group mb-3">
       <label class="mr-3">Restaurant Name :</label>
       <input type="text" name="name" placeholder="Restaurant Name" value="{{{restaurant.name}}}"
@@ -44,7 +44,7 @@
       <textarea class="form-control" row="5" name="description" placeholder="Description"
         required="required">{{{restaurant.description}}}</textarea><br>
     </div>
-    <button type="submit" class="btn btn-light">Done</button>
+    <button type="submit" class="btn btn-secondary">Done</button>
     <a href="/" class="btn btn-danger ml-2">Cancel</a>
   </form>
 </div>
