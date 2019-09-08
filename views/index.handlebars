@@ -8,6 +8,7 @@
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
+
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
@@ -21,11 +22,25 @@
 <!-- restaurant list -->
 <div class="container mt-5 ">
 
-  <div class="mb-5 col-md-10 col-12 mx-auto pl-1">
-    <form action="/restaurants/new" method="get">
-      <a href="/restaurants/new" class="btn btn-warning">Create</a>
-    </form>
+  <div class="d-flex flex-row mb-5 col-md-10 col-12 mx-auto pl-1">
+    <div class="mr-auto">
+      <form action="/restaurants/new" method="get">
+        <a href="/restaurants/new" class="btn btn-warning">Create</a>
+      </form>
+    </div>
+
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">排序</button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">A -> Z</a>
+        <a class="dropdown-item" href="#">Z -> A</a>
+        <a class="dropdown-item" href="#">類別</a>
+        <a class="dropdown-item" href="#">地區</a>
+      </div>
+    </div>
   </div>
+
 
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
