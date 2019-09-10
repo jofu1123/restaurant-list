@@ -6,7 +6,7 @@ const userForSort = require('../public/javascripts/userForSort')
 // routes setting search function 
 router.get('/', (req, res) => {
   let sortObject = userForSort(req.query)
-  
+
   Restaurant.find()
     .sort(sortObject)
     .exec((err, allRestaurantList) => {
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
           category.toLowerCase().includes(keyword)
       })
       if (err) return console.error(err)
-      return res.render('index', { restaurants, sortName: req.query.sortName, sort: req.query.sort, keyword })
+      return res.render('index', { restaurants, sortName: Object.keys(sortObject), sort: Object.values(sortObject), keyword })
     })
 })
 module.exports = router
