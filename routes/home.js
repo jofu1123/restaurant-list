@@ -1,12 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/list')
+const userForSort = require('../public/javascripts/userForSort')
 
 router.get('/', (req, res) => {
-  const sort = req.query.sort || 'asc'
-  const sortName = req.query.sortName || 'name'
-  const sortObject = {}
-  sortObject[sortName] = sort
+  const sortName = userForSort(req.query).sortName
+  const sort = userForSort(req.query).sort
 
   Restaurant.find((err, list) => {
     if (err) return console.error(err)
