@@ -31,7 +31,7 @@ app.use(session({
 }))
 
 // connect mongodb
-mongoose.connect("mongodb://127.0.0.1/restaurant", { useNewUrlParser: true })
+mongoose.connect("mongodb://127.0.0.1/restaurant", { useNewUrlParser: true, useCreateIndex: true })
 const db = mongoose.connection
 
 // setting express-handlebars

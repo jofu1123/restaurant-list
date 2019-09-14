@@ -7,7 +7,7 @@ const userForSort = require('../public/javascripts/userForSort')
 router.get('/', (req, res) => {
   let sortObject = userForSort(req.query)
 
-  Restaurant.find()
+  Restaurant.find({ userId: req.user._id })
     .sort(sortObject)
     .exec((err, allRestaurantList) => {
       const keyword = req.query.keyword.toLowerCase()

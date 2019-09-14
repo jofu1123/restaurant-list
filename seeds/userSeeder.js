@@ -1,10 +1,9 @@
-// require
 const mongoose = require('mongoose')
-const Restaurant = require('../models/list')
-const restaurantList = require('../restaurant').results
+const User = require('../models/user')
+const userList = require('../seeduser').results
 
-// db connect
 mongoose.connect('mongodb://127.0.0.1/restaurant', { useNewUrlParser: true, useCreateIndex: true })
+
 const db = mongoose.connection
 
 db.on('error', () => {
@@ -14,10 +13,8 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('db connected')
 
-  for (item in restaurantList) {
-    Restaurant.create(restaurantList[item])
+  for (item in userList) {
+    User.create(userList[item])
   }
-
   console.log('done')
 })
-

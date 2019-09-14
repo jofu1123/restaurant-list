@@ -8,7 +8,7 @@ router.get('/', authenticated, (req, res) => {
   const sortName = userForSort(req.query).sortName
   const sort = userForSort(req.query).sort
 
-  Restaurant.find((err, list) => {
+  Restaurant.find({ userId: req.user._id }, (err, list) => {
     if (err) return console.error(err)
     return res.render('index', { restaurants: list, sortName, sort })
   })
