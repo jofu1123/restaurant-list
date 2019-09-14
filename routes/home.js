@@ -2,8 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/list')
 const userForSort = require('../public/javascripts/userForSort')
+const { authenticated } = require('../config/auth')
 
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   const sortName = userForSort(req.query).sortName
   const sort = userForSort(req.query).sort
 

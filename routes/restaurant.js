@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/list')
+const { authenticated } = require('../config/auth')
 
 // routes setting show detail page
-router.get('/:id/detail', (req, res) => {
+router.get('/:id/detail', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('show', { restaurant })
@@ -11,11 +12,11 @@ router.get('/:id/detail', (req, res) => {
 })
 
 // routes Create
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   res.render('new')
 })
 
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   const restaurant = new Restaurant({
     name: req.body.name,
     name_en: req.body.name_en,
@@ -34,7 +35,7 @@ router.post('/', (req, res) => {
 })
 
 // routes Update
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('edit', { restaurant })
@@ -42,7 +43,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // route Update data
-router.put('/:id/edit', (req, res) => {
+router.put('/:id/edit', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.name = req.body.name
@@ -61,7 +62,7 @@ router.put('/:id/edit', (req, res) => {
 })
 
 // routes Delete
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id/delete', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     restaurant.remove(err => {
       if (err) return console.error(err)
