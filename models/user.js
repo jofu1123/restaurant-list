@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Sechma = mongoose.Sechma()
+const Sechma = mongoose.Schema
 
 const restaurantSchema = new Sechma({
   name: {
