@@ -9,6 +9,8 @@ const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/list')
 const methodOverride = require('method-override')
+const session = require('express-session')
+const passport = require('passport')
 const app = express()
 
 // port
@@ -20,6 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // setting use method-override
 app.use(methodOverride('_method'))
+
+// user session
+app.use(session({
+  secret: 'xxx',
+  resave: false,
+  saveUninitialized: true,
+}))
 
 // connect mongodb
 mongoose.connect("mongodb://127.0.0.1/restaurant", { useNewUrlParser: true })
@@ -38,6 +47,16 @@ db.on('error', () => {
 // connected
 db.once('open', () => {
   console.log('mongodb connected')
+})
+
+// after session init passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')(passport)
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
 })
 
 
