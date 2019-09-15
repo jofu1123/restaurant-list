@@ -3,6 +3,10 @@
 ****************************/
 // require
 const express = require('express')
+// 判斷開發環境
+if (process.env.NODE_ENV !== 'production') {     //如果不是production模式
+  require('dotenv').config()                     //使用dotenv讀取 .env檔案
+}
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -71,6 +75,7 @@ app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurant'))
 app.use('/search', require('./routes/search'))
 app.use('/users', require('./routes/user'))
+app.use('/auth', require('./routes/auths'))
 
 
 /****************************
