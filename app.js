@@ -12,6 +12,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/list')
+const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // setting use method-override
 app.use(methodOverride('_method'))
+
 
 // user session
 app.use(session({
@@ -59,10 +61,14 @@ app.use(passport.session())
 
 require('./config/passport')(passport)
 
+app.use(flash())
 //登入後可以取得使用者的資訊方便我們在view中直接使用
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated() //辨識使用者是否已經登入
+  // 新增兩個 falsh message變數
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
