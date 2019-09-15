@@ -1,5 +1,6 @@
 // require
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 const Restaurant = require('../models/list')
 const User = require('../models/user')
 const restaurantList = require('../restaurant').results
@@ -16,18 +17,25 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('db connected')
   let index = 0
-  for (item in userList) {
+  for (let i = 0; i < userList.length; i++) {
 
-    User.create(userList[item]).then(user => {
-      let count = 0
-      for (let i = index; i < restaurantList.length; i++) {
-        restaurantList[i].userId = user._id
-        Restaurant.create(restaurantList[i])
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(userList[i].password, salt, (err, hash) => {
+        if (err) throw err
+        userList[i].password = hash
 
-        count++
-        index = i + 1
-        if (count === 3) break
-      }
+        User.create(userList[i]).then(user => {
+          let count = 0
+          for (let i = index; i < restaurantList.length; i++) {
+            restaurantList[i].userId = user._id
+            Restaurant.create(restaurantList[i])
+
+            count++
+            index = i + 1
+            if (count === 3) break
+          }
+        })
+      })
     })
   }
   console.log('done')
