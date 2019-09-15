@@ -26,7 +26,10 @@
         </a>
 
         {{#if isAuthenticated}}
-        <a href="/users/logout" class="btn btn-outline-dark">Logout</a>
+        <div>
+          <span class="mr-3">Hi,您好 {{user.name}}</span>
+          <a href="/users/logout" class="btn btn-outline-dark">Logout</a>
+        </div>
         {{else}}
         <div>
           <a href="/users/login" class="btn btn-outline-dark">Login</a>
