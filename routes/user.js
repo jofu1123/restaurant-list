@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body
   let errors = []
 
-  if (!name || !email || !password || !password2) {
+  if (!email || !password || !password2) {
     errors.push({ message: '所有欄位都是必填' })
   }
 
@@ -49,7 +49,6 @@ router.post('/register', (req, res) => {
       if (user) {
         // have user
         errors.push({ message: '這個Email已經註冊過了' })
-        console.log(errors)
         res.render('register', { name, email, password, password2, errors })
       } else {
         // not found and save new
