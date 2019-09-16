@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/list')
-const userForSort = require('../public/javascripts/userForSort')
+const userForSort = require('../libs/userForSort')
 
 // routes setting search function 
 router.get('/', (req, res) => {

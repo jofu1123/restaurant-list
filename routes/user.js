@@ -49,7 +49,8 @@ router.post('/register', (req, res) => {
       if (user) {
         // have user
         errors.push({ message: '這個Email已經註冊過了' })
-        res.render('/register', { name, email, password, password2 })
+        console.log(errors)
+        res.render('register', { name, email, password, password2, errors })
       } else {
         // not found and save new
         const newUser = new User({
